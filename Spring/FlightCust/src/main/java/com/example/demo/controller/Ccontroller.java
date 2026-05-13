@@ -18,41 +18,40 @@ import com.example.demo.serviceimplements.Implement;
 
 @RestController
 @RequestMapping("/customer")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://userside-orpv.onrender.com")
 public class Ccontroller {
 	@Autowired
 	private Implement imp;
-	
+
 	@PostMapping("/insert")
 	public Customer insert(@RequestBody Customer c) {
 		return imp.Insert(c);
 	}
-	
+
 	@PutMapping("/update")
 	public Customer Update(@RequestBody Customer c) {
 		return imp.Update(c);
 	}
-	
+
 	@PutMapping("/update/{id}")
 	public Customer updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
-	    return imp.updateCustomer(id, customer);
+		return imp.updateCustomer(id, customer);
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
 	public String delete(@PathVariable int id) {
 		imp.Delete(id);
 		return "Record Deleted!";
 	}
-	
+
 	@GetMapping("/single/{id}")
 	public Customer Single(@PathVariable int id) {
 		return imp.Single(id);
 	}
-	
+
 	@GetMapping("/all")
 	public List<Customer> all() {
 		return imp.all();
 	}
-	
-	
+
 }
